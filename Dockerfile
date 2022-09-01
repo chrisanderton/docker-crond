@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.16.2
 
 RUN apk add --update --no-cache \
     bash \
@@ -8,4 +8,5 @@ RUN apk add --update --no-cache \
     curl && \
     apk add --no-cache --upgrade grep
     
-ENTRYPOINT ["crond", "-f", "-l", "8", "-d", "8", "/dev/stdout"]
+ENTRYPOINT ["crond", "-f"]
+CMD ["-l", "8", "-d", "8", "/dev/stdout"]

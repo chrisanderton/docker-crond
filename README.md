@@ -1,3 +1,3 @@
 # docker-cron
 
-Lightweight image to run ```cron```.
+Lightweight image to run ```crond```.

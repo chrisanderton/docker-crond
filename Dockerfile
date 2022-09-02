@@ -1,6 +1,6 @@
 FROM alpine:3.16.2
 
-COPY entrypoint.sh /usr/bin/entrypoint.sh
+COPY entrypoint.sh /usr/bin/entrypoint
 
 RUN apk add --update --no-cache \
     bash \
@@ -13,5 +13,5 @@ RUN apk add --update --no-cache \
     mkdir -p /etc/periodic/1min /etc/periodic/5min /etc/periodic/10min && \
     chown -R "$user:$user" /etc/periodic
    
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["-l", "8", "-d", "8", "/dev/stdout"]

@@ -38,4 +38,4 @@ fi
 echo "$crontab_file" | crontab -
 
 # run crond in foreground, allow for other params
-exec "crond -f" "$@"
+exec "crond" "-f" "$@"

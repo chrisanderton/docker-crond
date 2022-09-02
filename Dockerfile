@@ -9,7 +9,7 @@ RUN apk add --update --no-cache \
     jq \
     curl && \
     apk add --no-cache --upgrade grep && \
-    chmod +x /usr/bin/entrypoint.sh && \
+    chmod +x /usr/bin/entrypoint && \
     mkdir -p /etc/periodic/1min /etc/periodic/5min /etc/periodic/10min && \
     chown -R root:root /etc/periodic
    

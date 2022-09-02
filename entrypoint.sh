@@ -12,6 +12,8 @@ USER=root
 CRONTAB="/var/spool/cron/crontabs/$USER"
 PERIODS="/etc/periodic"
 
+# this is weird, could maybe be in a file. it's mostly the default, but someone somwhere said anything that appends would do
+# so on each restart ¯\_(ツ)_/¯
 cat <<EOF > $CRONTAB
 */1 * * * * run-parts /etc/periodic/1min
 */5 * * * * run-parts /etc/periodic/5min
@@ -25,10 +27,10 @@ EOF
 
 # if cron is provided, override the default crontab
 if [ -n "$CRON" ]; then
-  if [ "$APPEND" -eq "true" ]; then
-    echo -e "$CRON" >> "$CRONTAB"
+  if [ "$APPEND" = "true" ]; then
+    echo "$CRON" >> $CRONTAB
   else
-    echo -e "$CRON" > "$CRONTAB"
+    echo "$CRON" > $CRONTAB
   fi
 fi
 

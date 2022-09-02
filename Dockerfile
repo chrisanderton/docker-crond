@@ -11,7 +11,7 @@ RUN apk add --update --no-cache \
     apk add --no-cache --upgrade grep && \
     chmod +x /usr/bin/entrypoint.sh && \
     mkdir -p /etc/periodic/1min /etc/periodic/5min /etc/periodic/10min && \
-    chown -R "$user:$user" /etc/periodic
+    chown -R root:root /etc/periodic
    
 ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["-l", "8", "-d", "8", "/dev/stdout"]

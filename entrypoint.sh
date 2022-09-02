@@ -6,15 +6,15 @@ set -e
 # see: https://stackoverflow.com/questions/27771781/how-can-i-access-docker-set-environment-variables-from-a-cron-job
 printenv > /etc/environment
 
-USER=root
+user="root"
 
 # /var/spool/cron/crontabs/ is symlink of /etc/crontabs/
-PERIODS="/etc/periodic"
+periods="/etc/periodic"
 
 # this is weird here, could maybe be in a file. it's mostly the default crontab
 # someone somwhere said anything that appends would do so on each restart ¯\_(ツ)_/¯
 
-read -r -d '' CRONTAB_FILE <<EOF
+crontab_file=$(cat <<EOF
 */1 * * * * run-parts /etc/periodic/1min
 */5 * * * * run-parts /etc/periodic/5min
 */10 * * * * run-parts /etc/periodic/10min
@@ -24,20 +24,21 @@ read -r -d '' CRONTAB_FILE <<EOF
 0 3 * * 6 run-parts /etc/periodic/weekly
 0 5 1 * * run-parts /etc/periodic/monthly
 EOF
+)
 
 # if CRONTAB is provided from docker config, override or append the default crontab
 if [ -n "$CRONTAB" ]; then
   if [ "$REPLACE" = "true" ]; then
-    CRONTAB_FILE=$(printf '%s\n' "$CRONTAB")
+    crontab_file=$(printf '%s\n' "$CRONTAB")
   else
-    CRONTAB_FILE=$(printf '%s\n\n%s\n' "$CRONTAB_FILE" "$CRONTAB")
+    crontab_file=$(printf '%s\n\n%s\n' "$crontab_file" "$CRONTAB")
   fi
 fi
 
-echo "$CRONTAB_FILE" | crontab -
+echo "$crontab_file" | crontab -
 
-mkdir -p $PERIODS/1min $PERIODS/5min $PERIODS/10min
-chown -R "$USER:$USER" $PERIODS
+mkdir -p $periods/1min $periods/5min $periods/10min
+chown -R "$user:$user" $periods
 
 # run crond in foreground, allow for other params
 exec "crond -f" "$@"

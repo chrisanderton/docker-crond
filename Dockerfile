@@ -10,8 +10,8 @@ RUN apk add --update --no-cache \
     curl && \
     apk add --no-cache --upgrade grep && \
     chmod +x /usr/bin/entrypoint.sh && \
-    mkdir -p $periods/1min $periods/5min $periods/10min && \
-    chown -R "$user:$user" $periods
+    mkdir -p /etc/periodic/1min /etc/periodic/5min /etc/periodic/10min && \
+    chown -R "$user:$user" /etc/periodic
    
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["-l", "8", "-d", "8", "/dev/stdout"]

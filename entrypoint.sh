@@ -37,7 +37,6 @@ fi
 
 echo "$crontab_file" | crontab -
 
-mkdir -p $periods/1min $periods/5min $periods/10min
 chown -R "$user:$user" $periods
 
 # run crond in foreground, allow for other params

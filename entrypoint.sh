@@ -37,7 +37,5 @@ fi
 
 echo "$crontab_file" | crontab -
 
-chown -R "$user:$user" $periods
-
 # run crond in foreground, allow for other params
 exec "crond -f" "$@"

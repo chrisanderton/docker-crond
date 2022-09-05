@@ -7,7 +7,10 @@ RUN apk add --update --no-cache \
     coreutils \
     gettext \
     jq \
-    curl && \
+    curl \ 
+    sqlite \
+    rclone ]
+    gnupg && \
     apk add --no-cache --upgrade grep && \
     chmod +x /usr/bin/entrypoint && \
     mkdir -p /etc/periodic/1min /etc/periodic/5min /etc/periodic/10min && \

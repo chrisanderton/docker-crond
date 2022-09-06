@@ -10,7 +10,7 @@ RUN apk add --update --no-cache \
     curl \ 
     sqlite \
     rclone \
-    gnupg && \
+    gnupg \
     xz && \
     apk add --no-cache --upgrade grep && \
     chmod +x /usr/bin/entrypoint && \

@@ -9,8 +9,9 @@ RUN apk add --update --no-cache \
     jq \
     curl \ 
     sqlite \
-    rclone ]
+    rclone \
     gnupg && \
+    xz && \
     apk add --no-cache --upgrade grep && \
     chmod +x /usr/bin/entrypoint && \
     mkdir -p /etc/periodic/1min /etc/periodic/5min /etc/periodic/10min && \

@@ -7,7 +7,7 @@ RUN apk add --update --no-cache \
     coreutils \
     gettext \
     jq \
-    curl \ 
+    curl \
     sqlite \
     rclone \
     gnupg \

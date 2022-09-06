@@ -1,6 +1,6 @@
 # docker-crond
 
-Lightweight image to run `crond`. Includes some additional packages to help with scripts you might need to write/run: bash, coreutils, gettext, jq, curl, sqlite, rclone, gnupg.
+Lightweight image to run `crond`. Includes some additional packages to help with scripts you might need to write/run: bash, coreutils, gettext, jq, curl, sqlite, rclone, gnupg, xz.
 
 Entrypoint runs `crond -f`; default `CMD` sets up for logging with `-l 8 -d 8 /dev/stdout` and can be overridden.
 
